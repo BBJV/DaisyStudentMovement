@@ -18,7 +18,7 @@ using System;
 using System.Linq;
 using Rand = UnityEngine.Random;
 using Obj = UnityEngine.Object;
-public class StudentManager {
+public class StudentManager : MonoBehaviour {
 
 #region Variables
 	public int angry = 0;
@@ -28,39 +28,32 @@ public class StudentManager {
 #endregion
 
 #region Methods
-	public StudentManager () {
-		if(_instance)
-		{
-			return _instance;
+	class StudentManagerHelper {
+		public StudentManagerHelper () {
+			_instance = (new GameObject(GameDefine.Strings.StudentManager, typeof(StudentManager))).GetComponent<StudentManager>();
 		}
-		else
+	}
+
+	public static StudentManager instance {
+		get
 		{
-			StudentManager temp = Obj.FindObjectOfType(typeof(StudentManager)) as StudentManager;
-			if(temp)
-			{
-				_instance = temp;
-			}
-			else
-			{
-				temp = (new GameObject(GameDefine.eString.StudentManger, typeof(StudentManager))).GetComponent<StudentManager>();
-				_instance = temp;
-			}
+			if( _instance == null )
+				new StudentManagerHelper();
+			
 			return _instance;
 		}
 	}
 
-	void Awake()
-	{
+	void Awake () {
 
 	}
+
 	// Use this for initialization
-	void Start()
-	{
+	void Start () {
 
 	}
 	// Update is called once per frame
-	void Update()
-	{
+	void Update () {
 
 	}
 
@@ -74,7 +67,7 @@ public class StudentManager {
 	public void JoinTeam (int num) {
 		for(int i = 0; i < num; i++)
 		{
-			JoinTeam(new GameObject(GameDefine.eString.Student));
+			JoinTeam(new GameObject(GameDefine.Strings.Student));
 		}
 	}
 

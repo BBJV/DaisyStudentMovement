@@ -17,7 +17,7 @@ using System;
 using System.Linq;
 using Rand = UnityEngine.Random;
 using Obj = UnityEngine.Object;
-public class PoliceManager {
+public class PoliceManager : MonoBehaviour {
 
 #region Variables
 	public int angry = 0;
@@ -27,39 +27,56 @@ public class PoliceManager {
 #endregion
 
 #region Methods
-	public PoliceManager () {
-		if(_instance)
-		{
-			return _instance;
-		}
-		else
-		{
-			PoliceManager temp = Obj.FindObjectOfType(typeof(PoliceManager)) as PoliceManager;
-			if(temp)
-			{
-				_instance = temp;
-			}
-			else
-			{
-				temp = (new GameObject(GameDefine.eString.PoliceManager, typeof(PoliceManager))).GetComponent<PoliceManager>();
-				_instance = temp;
-			}
-			return _instance;
+	class PoliceManagerHelper {
+		public PoliceManagerHelper () {
+			_instance = (new GameObject(GameDefine.Strings.PoliceManager, typeof(PoliceManager))).GetComponent<PoliceManager>();
 		}
 	}
-	void Awake()
-	{
 
+	public static PoliceManager instance {
+		get
+		{
+			if( _instance == null )
+				new PoliceManagerHelper();
+			
+			return _instance;
+		}
 	}
+
+	void Awake () {
+		_instance = this;
+	}
+
 	// Use this for initialization
-	void Start()
-	{
+	void Start () {
 
 	}
-	// Update is called once per frame
-	void Update()
-	{
 
+	// Update is called once per frame
+	void Update () {
+
+	}
+
+	public void JoinTeam (GameObject obj) {
+		if(!team.Contains(obj))
+		{
+			team.Add(obj);
+		}
+	}
+	
+	public void JoinTeam (int num) {
+		for(int i = 0; i < num; i++)
+		{
+			JoinTeam(new GameObject(GameDefine.Strings.Police));
+		}
+	}
+	
+	public void ExitTeam (GameObject obj) {
+		if(team.Contains(obj))
+		{
+			team.Remove(obj);
+			Obj.Destroy(obj);
+		}
 	}
 #endregion
 }
