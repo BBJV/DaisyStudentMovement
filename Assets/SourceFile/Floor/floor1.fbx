@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2014
 		Month: 05
-		Day: 01
-		Hour: 20
+		Day: 10
+		Hour: 01
 		Minute: 09
-		Second: 53
+		Second: 18
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2014-05-01 20:09:53:000"
+CreationTime: "2014-05-10 01:09:18:000"
 Creator: "Blender version 2.70 (sub 0)"
 
 ; Object definitions
@@ -29,7 +29,7 @@ Creator: "Blender version 2.70 (sub 0)"
 
 Definitions:  {
 	Version: 100
-	Count: 11
+	Count: 13
 	ObjectType: "Model" {
 		Count: 9
 	}
@@ -37,6 +37,12 @@ Definitions:  {
 		Count: 1
 	}
 	ObjectType: "Material" {
+		Count: 1
+	}
+	ObjectType: "Texture" {
+		Count: 1
+	}
+	ObjectType: "Video" {
 		Count: 1
 	}
 	ObjectType: "Pose" {
@@ -232,6 +238,23 @@ Objects:  {
 			ReferenceInformationType: "Direct"
 			Smoothing: 0
 		}
+		LayerElementUV: 0 {
+			Version: 101
+			Name: "UVMap"
+			MappingInformationType: "ByPolygonVertex"
+			ReferenceInformationType: "IndexToDirect"
+			UV: 0.000100,0.999900,0.999900,0.999900,0.000100,0.000100,0.999900,0.000100
+			UVIndex: 2,3,1,0
+		}
+		LayerElementTexture: 0 {
+			Version: 101
+			Name: "UVMap"
+			MappingInformationType: "AllSame"
+			ReferenceInformationType: "IndexToDirect"
+			BlendMode: "Translucent"
+			TextureAlpha: 1
+			TextureId: 0
+		}
 		LayerElementMaterial: 0 {
 			Version: 101
 			Name: ""
@@ -247,6 +270,10 @@ Objects:  {
 			}
 			LayerElement:  {
 				Type: "LayerElementSmoothing"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementUV"
 				TypedIndex: 0
 			}
 			LayerElement:  {
@@ -1337,12 +1364,12 @@ Objects:  {
 		AudioColor: 0,1,0
 		CameraOrthoZoom: 1
 	}
-	Material: "Material::unnamed", "" {
+	Material: "Material::Material__floor1_png", "" {
 		Version: 102
-		ShadingModel: "phong"
+		ShadingModel: "lambert"
 		MultiLayer: 0
 		Properties60:  {
-			Property: "ShadingModel", "KString", "", "Phong"
+			Property: "ShadingModel", "KString", "", "Lambert"
 			Property: "MultiLayer", "bool", "",0
 			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.8000,0.8000
 			Property: "EmissiveFactor", "double", "",0.0000
@@ -1366,6 +1393,56 @@ Objects:  {
 			Property: "Opacity", "double", "",1.0
 			Property: "Reflectivity", "double", "",0
 		}
+	}
+	Video: "Video::floor1_png", "Clip" {
+		Type: "Clip"
+		Properties60:  {
+			Property: "FrameRate", "double", "",0
+			Property: "LastFrame", "int", "",0
+			Property: "Width", "int", "",0
+			Property: "Height", "int", "",0
+			Property: "Path", "charptr", "", "floor1.png"
+			Property: "StartFrame", "int", "",0
+			Property: "StopFrame", "int", "",0
+			Property: "PlaySpeed", "double", "",1
+			Property: "Offset", "KTime", "",0
+			Property: "InterlaceMode", "enum", "",0
+			Property: "FreeRunning", "bool", "",0
+			Property: "Loop", "bool", "",0
+			Property: "AccessMode", "enum", "",0
+		}
+		UseMipMap: 0
+		Filename: "floor1.png"
+		RelativeFilename: "J:\BBV\SourceFile\Floor\floor1.png"
+	}
+	Texture: "Texture::floor1_png", "TextureVideoClip" {
+		Type: "TextureVideoClip"
+		Version: 202
+		TextureName: "Texture::floor1_png"
+		Properties60:  {
+			Property: "Translation", "Vector", "A+",0,0,0
+			Property: "Rotation", "Vector", "A+",0,0,0
+			Property: "Scaling", "Vector", "A+",1,1,1
+			Property: "Texture alpha", "Number", "A+",0
+			Property: "TextureTypeUse", "enum", "",0
+			Property: "CurrentTextureBlendMode", "enum", "",1
+			Property: "UseMaterial", "bool", "",0
+			Property: "UseMipMap", "bool", "",0
+			Property: "CurrentMappingType", "enum", "",0
+			Property: "UVSwap", "bool", "",0
+			Property: "WrapModeU", "enum", "",0
+			Property: "WrapModeV", "enum", "",0
+			Property: "TextureRotationPivot", "Vector3D", "",0,0,0
+			Property: "TextureScalingPivot", "Vector3D", "",0,0,0
+			Property: "VideoProperty", "object", ""
+		}
+		Media: "Video::floor1_png"
+		FileName: "floor1.png"
+		RelativeFilename: "J:\BBV\SourceFile\Floor\floor1.png"
+		ModelUVTranslation: 0,0
+		ModelUVScaling: 1,1
+		Texture_Alpha_Source: "None"
+		Cropping: 0,0,0,0
 	}
 	Pose: "Pose::BIND_POSES", "BindPose" {
 		Type: "BindPose"
@@ -1414,7 +1491,11 @@ Relations:  {
 	}
 	Model: "Model::Camera Switcher", "CameraSwitcher" {
 	}
-	Material: "Material::unnamed", "" {
+	Material: "Material::Material__floor1_png", "" {
+	}
+	Texture: "Texture::floor1_png", "TextureVideoClip" {
+	}
+	Video: "Video::floor1_png", "Clip" {
 	}
 }
 
@@ -1423,7 +1504,9 @@ Relations:  {
 
 Connections:  {
 	Connect: "OO", "Model::Plane", "Model::Scene"
-	Connect: "OO", "Material::unnamed", "Model::Plane"
+	Connect: "OO", "Material::Material__floor1_png", "Model::Plane"
+	Connect: "OO", "Texture::floor1_png", "Model::Plane"
+	Connect: "OO", "Video::floor1_png", "Texture::floor1_png"
 }
 ;Takes and animation section
 ;----------------------------------------------------
